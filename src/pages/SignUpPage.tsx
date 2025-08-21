@@ -5,6 +5,9 @@ import { Label } from "@/components/ui/label";
 import Aurora from "@/assets/backgrounds/Aurora";
 
 import { useNavigate } from "react-router-dom";
+import FadeContent from "@/assets/animations/reactbits/FadeContent";
+
+
 
 const SignUpPage = () => {
 
@@ -22,6 +25,8 @@ const SignUpPage = () => {
 
 <div className="w-full h-fit absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-0">
         
+
+<FadeContent blur={true} duration={500} easing="ease-out" initialOpacity={0}>
             <div>
                 <Label htmlFor="name">Name</Label>
                 <Input id="name" type="text" placeholder="Enter your name" className="mt-2 mb-4 w-80" />
@@ -56,6 +61,8 @@ const SignUpPage = () => {
             </p>
             
         </div>
+        </FadeContent>
+
 </div>
 
     </div>

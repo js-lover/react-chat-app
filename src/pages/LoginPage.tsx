@@ -6,6 +6,8 @@ import Aurora from "@/assets/backgrounds/Aurora";
 
 import { useNavigate } from "react-router-dom";
 
+import FadeContent from "@/assets/animations/reactbits/FadeContent";
+
 const LoginPage = () => {
 
     const navigate = useNavigate();
@@ -21,7 +23,7 @@ const LoginPage = () => {
 
 
 <div className="w-full h-fit absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-6">
-        
+        <FadeContent blur={true} duration={500} easing="ease-out" initialOpacity={0}>
             <div>
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" type="email" placeholder="Enter your email" className="mt-2 mb-4 w-80" />
@@ -48,7 +50,11 @@ const LoginPage = () => {
             </p>
             
         </div>
+        </FadeContent>
 </div>
+
+
+
 
     </div>
 

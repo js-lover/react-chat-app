@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import Aurora from "@/assets/backgrounds/Aurora";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const LandingPage = () => {
   
     const navigate = useNavigate();
 
     return (
+
+
     <div className="w-screen h-screen relative flex flex-col gap-20 justify-center items-center bg-black">
 
         <Aurora
@@ -18,6 +19,8 @@ const LandingPage = () => {
             blend={0.5}
             colorStops={["#ff0000", "#00ff00", "#0000ff"]}
         />
+
+       
 
 
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">

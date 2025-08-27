@@ -2,10 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import route from "./routes/userRoute.js"
+import route from "./routes/userRoute.js";
+import authRoutes from './routes/authRoutes.js'
+import cors from "cors";
 
 const app = express();
+
 app.use(bodyParser.json());
+
+app.use(cors());
 
 dotenv.config();
 
@@ -22,7 +27,5 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-
-  app.use("/api/user", route)
-
-  
+app.use("/api/user", route);
+app.use("/api/auth", authRoutes);

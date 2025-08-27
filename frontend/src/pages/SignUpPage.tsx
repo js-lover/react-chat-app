@@ -4,8 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Aurora from "@/assets/backgrounds/Aurora";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FadeContent from "@/assets/animations/reactbits/FadeContent";
+
+import { registerUser, registerData } from "../api/auth";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -15,8 +17,26 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleRegister = async () => {
+    try {
+      // Kullanıcı bilgilerini backend'e gönder
+      const data = await registerUser({ name, username, email, password });
+
+      if (data.error) {
+        console.log("Kayıt hatası:", data.error);
+        // istersen state ile kullanıcıya mesaj gösterebilirsin
+      } else {
+        console.log("Kayıt başarılı:", data);
+        // Başarılıysa yönlendirme
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error("Sunucu hatası:", err);
+    }
+  };
+
   return (
-    <div className="w-screen h-screen relative flex flex-col justify-center items-center bg-black text-white ">
+    <div className="w-screen h-screen relative flex flex-col justify-center items-center bg-black text-white">
       <Aurora
         amplitude={0.5}
         blend={0.5}
@@ -30,75 +50,76 @@ const SignUpPage = () => {
           easing="ease-out"
           initialOpacity={0}
         >
-          <div>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              className="mt-2 mb-4 w-80"
-              onChange={(data) => {
-                setName(data.target.value)
-              }}
-            />
-          </div>
-          <div>
-            <Label htmlFor="username">Username</Label>
-            <Input
-              id="username"
-              type="text"
-              placeholder="Enter your username"
-              className="mt-2 mb-4 w-80"
-              onChange={(data) => {
-                setUsername(data.target.value)
-              }}
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              className="mt-2 mb-4 w-80"
-              onChange={(data) => {
-                setEmail(data.target.value)
-              }}
-            />
-          </div>
-
-          <div>
-            <div className="flex justify-between items-center">
-              <Label htmlFor="password">Password</Label>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault(); // sayfanın reload olmasını engeller
+              handleRegister(); // register fonksiyonunu çağır
+            }}
+            className="flex flex-col gap-4"
+          >
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+                className="mt-2 mb-4 w-80"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-            <Input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              className="mt-2 mb-4 w-80"
-              onChange={(data) => {
-                setPassword(data.target.value)
-              }}
-            />
-          </div>
 
-          <div className="flex flex-col items-center">
-            <Link to="/home">
-              <button className="mt-4 rounded-full cursor-pointer bg-blue-500 text-white px-6 py-2 hover:bg-blue-600">
+            <div>
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                className="mt-2 mb-4 w-80"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                className="mt-2 mb-4 w-80"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                className="mt-2 mb-4 w-80"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-col items-center">
+              <button
+                type="submit"
+                className="mt-4 rounded-full cursor-pointer bg-blue-500 text-white px-6 py-2 hover:bg-blue-600"
+              >
                 Register
               </button>
-            </Link>
-            <p className="mt-4 text-sm">
-              You already have an account?{" "}
-              <span
-                onClick={() => {navigate("/login") ; console.log(name, username, email, password)}}
-                className="cursor-pointer font-bold text-blue-500 hover:underline"
-              >
-                Log In
-              </span>
-            </p>
-          </div>
+
+              <p className="mt-4 text-sm">
+                You already have an account?{" "}
+                <span
+                  onClick={() => navigate("/login")}
+                  className="cursor-pointer font-bold text-blue-500 hover:underline"
+                >
+                  Log In
+                </span>
+              </p>
+            </div>
+          </form>
         </FadeContent>
       </div>
     </div>

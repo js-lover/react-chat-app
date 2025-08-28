@@ -218,7 +218,12 @@ io.on("connection", (socket) => {
 
 *Add screenshots or GIFs here (UI, flows, Postman tests).*
 
----
+<img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 17 05" src="https://github.com/user-attachments/assets/7031cd48-2d91-419c-aec0-930769a464c6" />
+<img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 17 19" src="https://github.com/user-attachments/assets/891f55ba-7208-4fa9-846e-326392bdc2e5" />
+<img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 17 35" src="https://github.com/user-attachments/assets/8e27f8ba-4703-46a4-8f11-68b7d6cc3331" />
+<img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 17 45" src="https://github.com/user-attachments/assets/1763a0a4-5979-4049-99db-f6e4b910990c" />
+<img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 18 50" src="https://github.com/user-attachments/assets/ef2d14aa-6248-44be-a665-bda8844cd378" />
+
 
 ## 🤝 Contributing
 

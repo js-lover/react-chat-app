@@ -216,7 +216,6 @@ io.on("connection", (socket) => {
 
 ## 🖼️ Screenshots
 
-*Add screenshots or GIFs here (UI, flows, Postman tests).*
 
 <img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 17 05" src="https://github.com/user-attachments/assets/7031cd48-2d91-419c-aec0-930769a464c6" />
 <img width="1512" height="860" alt="Ekran Resmi 2025-08-28 16 17 19" src="https://github.com/user-attachments/assets/891f55ba-7208-4fa9-846e-326392bdc2e5" />

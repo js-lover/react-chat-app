@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
 import welcome from "../assets/animations/welcome.json";
 import Lottie from "lottie-react";
 import { Button } from "../components/ui/button";
 import Aurora from "../assets/backgrounds/Aurora";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
-  const [users, setUsers] = useState([]);
-
-  const navigate = useNavigate();
-
   return (
     <div className="w-screen h-screen relative flex flex-col gap-20 justify-center items-center bg-black">
       <Aurora

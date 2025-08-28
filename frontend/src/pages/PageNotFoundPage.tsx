@@ -1,19 +1,22 @@
 import React from 'react'
 import notFound from '../assets/animations/notFound.json'
 import Lottie from 'lottie-react'
+import { Link } from 'react-router-dom'
 
 const PageNotFoundPage = () => {
   return (
-    <div className='w-full h-screen bg-black flex flex-col justify-center items-center '>
+    <div className='w-full h-screen  bg-black flex flex-col justify-center items-center '>
 
       
         <Lottie 
-          className='w-full h-auto'
+          className='w-full h-auto xl:w-1/2'
           animationData={notFound}
         />
 
-        <h2 className='text-white font-light'>We can't seem to find the page you looking for...</h2>
-        <h3 className='text-white font-light text-sm'>go back</h3>
+        
+        <Link to="/home" >
+          <p className='text-white hover:cursor-pointer border-1 border-white rounded-sm p-2   hover:text-blue-500 hover:border-blue-500'>leave the page</p>
+        </Link>
 
 
     </div>

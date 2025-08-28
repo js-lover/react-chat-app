@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import Aurora from "@/assets/backgrounds/Aurora";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import Aurora from "../assets/backgrounds/Aurora";
 
 import { useNavigate } from "react-router-dom";
-import FadeContent from "@/assets/animations/reactbits/FadeContent";
+import FadeContent from "../assets/animations/reactbits/FadeContent";
 
 import { loginUser, loginData } from "../api/auth";
-
 
 const LoginPage = () => {
   const navigate = useNavigate();

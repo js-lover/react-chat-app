@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "Dragon’s Den" },
+  { "id": 2, "name": "Mystic Hollow" },
+  { "id": 3, "name": "Enchanted Library" },
+  { "id": 4, "name": "Crystal Cavern" },
+  { "id": 5, "name": "Celestial Observatory" },
+  { "id": 6, "name": "Phantom Chamber" },
+  { "id": 7, "name": "Sorcerer’s Tower" },
+  { "id": 8, "name": "Twilight Grove" },
+  { "id": 9, "name": "Eternal Sanctuary" },
+  { "id": 10, "name": "Shadow Keep" }
+]

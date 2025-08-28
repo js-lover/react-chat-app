@@ -1,69 +1,235 @@
-# React + TypeScript + Vite
+# React Chat App 💬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **real-time chat application** built with **React, Vite, TailwindCSS, Socket.IO, Express.js, and MongoDB**.
+The project is structured with separate **frontend** and **backend** folders for clean development and deployment.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+* 🔐 **Authentication** (JWT, bcrypt)
+* 👤 **User registration & login**
+* 💬 **Real-time messaging** (Socket.IO)
+* 🗂️ **MongoDB database integration (via Mongoose)**
+* 🎨 **Modern UI with TailwindCSS & Radix UI**
+* 📱 **Responsive design**
+* ⚡ **Fast development with Vite & React 19**
+* 🛡️ **CORS & secure API endpoints**
+* 🧪 **API testing with Postman**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Frontend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* React 19, Vite, TypeScript
+* TailwindCSS, Radix UI, Lucide Icons
+* React Router v7
+* Socket.IO Client
+* Axios
+* Lottie React
+* Utility: clsx, class-variance-authority, tailwind-merge
+
+### Backend
+
+* Node.js, Express.js
+* MongoDB with Mongoose
+* Socket.IO (WebSocket)
+* JWT (jsonwebtoken), bcrypt
+* dotenv, CORS, body-parser
+* Dev: nodemon
+
+---
+
+
+## 📂 Project Structure
+
+```plaintext
+react-chat-app/
+├─ frontend/                # React + Vite + TailwindCSS client
+│  ├─ src/
+│  ├─ index.html
+│  ├─ package.json
+│  └─ ...
+└─ backend/                 # Express + MongoDB + Socket.IO server
+   ├─ index.js              # Your server entry (example)
+   ├─ package.json
+   ├─ .env                  # Environment variables (see below)
+   └─ ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
+
+## ✅ Prerequisites
+
+* **Node.js** (LTS recommended)
+* **MongoDB**:
+
+  * Local MongoDB instance **or**
+  * MongoDB Atlas connection string
+* **Postman** (optional, for API testing)
+
+---
+
+## ⚙️ Installation
+
+### 1) Clone the repository
+
+```bash
+git clone https://github.com/serhatbarisaydin/react-chat-app.git
+cd react-chat-app
+```
+
+### 2) Install dependencies
+
+**Frontend**
+
+```bash
+cd frontend
+npm install
+```
+
+**Backend**
+
+```bash
+cd ../backend
+npm install
+```
+
+---
+
+## 🔐 Environment Variables (Backend)
+
+Create a `.env` file inside the **backend** folder:
+
+```env
+MONGO_URI= "mongodb://localhost:27017/<yourProjectName>"
+JWT_SECRET=your_jwt_secret
+PORT=8000
+```
+
+* `MONGO_URI`: Your MongoDB connection string (local or Atlas)
+* `JWT_SECRET`: Any strong secret string
+* `PORT`: Backend port (defaults to 5000 in examples)
+
+---
+
+## ▶️ Running the Project
+
+### Start Backend (API + WebSocket)
+
+```bash
+cd backend
+npm start
+```
+
+> Ensure your `start` script runs your server entry (e.g., `nodemon index.js`).
+
+### Start Frontend (Vite dev server)
+
+```bash
+cd frontend
+npm run dev
+```
+
+* Frontend: `http://localhost:5173`
+* Backend (example): `http://localhost:5000`
+
+---
+
+## 🗄️ Database
+
+* User data is stored in **MongoDB** using **Mongoose** ODM.
+* Auth flows (register/login) interact with MongoDB collections.
+* Configure your MongoDB connection in the backend via `.env`.
+
+---
+
+## 🧪 API Testing (Postman)
+
+The backend endpoints were tested with **Postman**.
+
+### API Endpoints
+
+* `POST /api/auth/register` → Register a new user  
+* `POST /api/auth/login` → Login & receive JWT  
+
+* `POST /api/users/create` → Create a new user (protected)  
+* `GET /api/users/getAllUsers` → Fetch all users (protected)  
+* `DELETE /api/users/delete/:id` → Delete user by ID (protected)  
+* `PUT /api/users/update/:id` → Update user by ID (protected)  
+
+> Include `Authorization: Bearer <token>` header for all protected routes.
+
+
+---
+
+## 🔌 Real-time (Socket.IO)
+
+**Client (example):**
+
+```ts
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:5000", {
+  withCredentials: true,
+  transports: ["websocket"],
+});
+
+socket.on("connect", () => {
+  console.log("connected", socket.id);
+});
+
+socket.on("message", (msg) => {
+  // handle incoming chat message
+});
+```
+
+**Server (example idea):**
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+io.on("connection", (socket) => {
+  socket.on("message", (payload) => {
+    // persist to DB, then emit to room/users
+    io.emit("message", payload);
+  });
+});
 ```
+
+---
+
+## 🧰 Scripts
+
+### Frontend
+
+* `npm run dev` → Start Vite dev server
+* `npm run build` → Build for production
+* `npm run preview` → Preview production build
+* `npm run lint` → Run ESLint
+
+### Backend
+
+* `npm start` → Start backend (e.g., `nodemon index.js`)
+
+---
+
+## 🖼️ Screenshots
+
+*Add screenshots or GIFs here (UI, flows, Postman tests).*
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a feature branch: `git checkout -b feature/awesome`
+3. Commit changes: `git commit -m "feat: add awesome feature"`
+4. Push branch: `git push origin feature/awesome`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.

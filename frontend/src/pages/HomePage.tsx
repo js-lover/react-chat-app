@@ -32,10 +32,10 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="w-screen  h-full xl:h-screen   flex flex-row xl:flex xl:flex-row  justify-center xl:items-center xl:justify-center   items-start bg-black">
-      <Header />
+    <div className="w-full  h-full xl:h-full   flex flex-row xl:flex xl:flex-row xl:pt-16  justify-center xl:items-center xl:justify-center   items-start bg-black">
+      <Header header="Home" isAvatarVisible={true} />
 
-      <div className=" w-full md:w-fit xl:mb-0 h-full xl:h-screen   mt-16 xl:mt-0  pt-0 xl:pt-0 flex flex-col justify-start xl:justify-center  xl:bg-neutral-900  xl:items-center xl:rounded-3xl  xl:px-5 items-center gap-0 xl:gap-2 ">
+      <div style={{backgroundColor:"#4369fd"}} className=" w-full  md:w-10/12 xl:mt-10 xl:pt-10 xl:pb-10 xl:mb-0 h-full xl:h-screen  mt-16   pt-0  flex flex-col justify-start xl:justify-center  xl:bg-neutral-900  xl:items-center xl:rounded-xl  xl:px-5 items-center gap-0 xl:gap-2 ">
         {rooms.map((room) => (
           <Link to={`/chat/${room.id}`} key={room.id}>
             <UserCard key={room.id} name={room.name} id={room.id} />
@@ -43,9 +43,11 @@ const HomePage = () => {
         ))}
       </div>
 
-      <div className="w-fit h-full hidden justify-center items-center xl:flex  ">
-        <Lottie className=" w-7/10" animationData={chat} />
+      <div className="w-200 h-full hidden justify-center items-center xl:flex  ">
+        <Lottie className=" w-full" animationData={chat} />
       </div>
+
+      <div></div>
     </div>
   );
 };

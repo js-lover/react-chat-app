@@ -4,6 +4,8 @@ import send from "/send.png";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header"
+
 
 const socket = io("http://localhost:8000");
 
@@ -51,7 +53,10 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="w-screen h-screen relative flex flex-col justify-start items-start bg-black">
+    <div className="w-screen pt-16 h-screen relative flex flex-col justify-start items-start bg-sky-100">
+      
+      <Header header="chat" isAvatarVisible={true}/>
+
       <div className=" w-full h-full flex flex-col justify-start items-center overflow-auto">
         {messages.map((msg, index) => (
           <div
@@ -74,12 +79,12 @@ const ChatPage = () => {
         ))}
       </div>
 
-      <div className="w-full h-16 relative bottom-0 left-0 flex flex-row justify-center items-center p-4">
-        <div className="w-full h-fit flex flex-row justify-start gap-2 items-start gap-0 ">
+      <div className="w-full h-16 relative bottom-0 left-0 flex flex-row justify-center  mb-4 items-center p-2">
+        <div className="w-full h-fit flex flex-row justify-start gap-2 items-start  ">
           <Input
             type="text"
             placeholder="Type your message here..."
-            className="w-full text-white "
+            className="w-full"
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />
